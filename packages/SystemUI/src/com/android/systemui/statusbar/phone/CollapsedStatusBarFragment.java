@@ -44,6 +44,7 @@ import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.phone.StatusBarIconController.DarkIconManager;
 import com.android.systemui.statusbar.phone.TickerView;
+import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.EncryptionHelper;
 import com.android.systemui.statusbar.policy.KeyguardMonitor;
@@ -68,6 +69,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private StatusBar mStatusBarComponent;
     private DarkIconManager mDarkIconManager;
     private SignalClusterView mSignalClusterView;
+
+    private View mClock;
+    private View mLeftClock;
 
     private int mTickerEnabled;
     private TickerObserver mTickerObserver;
@@ -108,11 +112,32 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
         protected void observe() {
             super.observe();
-            getContext().getContentResolver().registerContentObserver(
+            mContentResolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.STATUS_BAR_SHOW_TICKER),
                     false, this, UserHandle.USER_ALL);
-            getContext().getContentResolver().registerContentObserver(
+            mContentResolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.STATUS_BAR_CARRIER),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CLOCK),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_CLOCK_STYLE),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CLOCK_SECONDS),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_CLOCK_AM_PM_STYLE),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_CLOCK_DATE_DISPLAY),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_CLOCK_DATE_STYLE),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_CLOCK_DATE_FORMAT),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -123,6 +148,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
                     UserHandle.USER_CURRENT);
             initTickerView();
             updateSettings(true);
+            ((Clock)mClock).updateSettings();
+            ((Clock)mLeftClock).updateSettings();
         }
     }
 
@@ -150,6 +177,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         Dependency.get(StatusBarIconController.class).addIconGroup(mDarkIconManager);
         mSystemIconArea = mStatusBar.findViewById(R.id.system_icon_area);
         mSignalClusterView = mStatusBar.findViewById(R.id.signal_cluster);
+        mClock = mStatusBar.findViewById(R.id.clock);
+        mLeftClock = mStatusBar.findViewById(R.id.left_clock);
         Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mSignalClusterView);
         mCustomCarrierLabel = mStatusBar.findViewById(R.id.statusbar_carrier_text);
         updateSettings(false);
@@ -266,10 +295,16 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
      public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconAreaInner, animate, true);
+        if (((Clock)mLeftClock).isEnabled()) {
+            animateHide(mLeftClock, animate, true);
+        }
     }
 
     public void showNotificationIconArea(boolean animate) {
         animateShow(mNotificationIconAreaInner, animate);
+        if (((Clock)mLeftClock).isEnabled()) {
+            animateShow(mLeftClock, animate);
+        }
     }
 
     public void hideCarrierName(boolean animate) {
