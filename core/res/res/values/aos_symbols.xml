@@ -32,4 +32,7 @@
   <!-- Whether light up buttons only when pressed -->
   <java-symbol type="bool" name="config_buttonLightOnKeypressOnly" />
 
+  <!-- Whether device has dash charging support -->
+  <java-symbol type="bool" name="config_hasDashCharger" />
+
 </resources>
