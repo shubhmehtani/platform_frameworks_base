@@ -4567,6 +4567,9 @@ message MetricsEvent {
     // OS: O MR
     COLOR_MODE_SETTINGS = 1143;
 
+    // Quick setting tiles
+    CUSTOM_QUICK_TILES = 1144;
+
     // ---- End O-MR1 Constants, all O-MR1 constants go above this line ----
 
     // Add new aosp constants above this line.
