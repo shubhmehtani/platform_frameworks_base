@@ -36,4 +36,7 @@
     <!-- Data/Wifi activity arrows -->
     <string name="data_wifi_activity_arrows_title">Network activity</string>
 
+    <!-- Quick Settings tiles -->
+    <string name="quick_settings_screenshot_label">Screenshot</string>
+
 </resources>
