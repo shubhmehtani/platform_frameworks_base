@@ -7029,6 +7029,13 @@ public final class Settings {
         public static final String FORCE_AUTHORIZE_SUBSTRATUM_PACKAGES = "force_authorize_substratum_packages";
 
         /**
+         * Disable expanding quick settings on secure lock screens
+         *
+         * @hide
+         */
+        public static final String LOCK_QS_DISABLED = "lockscreen_qs_disabled";
+
+        /**
          * Status bar battery %
          * 0: Hide the battery percentage
          * 1: Display the battery percentage inside the icon
