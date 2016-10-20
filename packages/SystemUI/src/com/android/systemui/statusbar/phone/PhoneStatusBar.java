@@ -369,6 +369,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     View mExpandedContents;
     TextView mNotificationPanelDebugText;
 
+    // Custom Carrier Label
+    private int mShowCarrierLabel;
+    private TextView mCustomCarrierLabel;
+
     // settings
     private QSPanel mQSPanel;
 
@@ -488,6 +492,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVBAR_BUTTON_COLOR),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                   Settings.System.STATUS_BAR_SHOW_CARRIER),
+                   false, this, UserHandle.USER_ALL);
             updateSettings();
 
         }
@@ -511,7 +518,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NAVBAR_BUTTON_COLOR))) {
                     mNavigationController.updateNavbarOverlay(mContext.getResources());
-            }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_CARRIER))) {
+                    updateSettings();
+                    updateCarrier();
+	    }
             updateSettings();
         }
 
@@ -519,7 +530,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             ContentResolver resolver = mContext.getContentResolver();
             boolean mShowLteFourGee = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_LTE_FOURGEE, 0, UserHandle.USER_CURRENT) == 1;
-        }
+
+            mShowCarrierLabel = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
+	}
     }
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
@@ -1012,6 +1026,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         initSignalCluster(mStatusBarView);
         initSignalCluster(mKeyguardStatusBar);
         initEmergencyCryptkeeperText();
+
+        mCustomCarrierLabel = (TextView) mStatusBarWindow.findViewById(R.id.statusbar_carrier_text);
+        if (mCustomCarrierLabel != null) {
+            updateCarrier();
+        }
 
         mFlashlightController = new FlashlightController(mContext);
         mKeyguardBottomArea.setFlashlightController(mFlashlightController);
@@ -2103,6 +2122,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateNotifications();
     }
 
+    private void updateCarrier() {
+        if (mCustomCarrierLabel != null) {
+            if (mShowCarrierLabel == 2) {
+                mCustomCarrierLabel.setVisibility(View.VISIBLE);
+            } else if (mShowCarrierLabel == 3) {
+                mCustomCarrierLabel.setVisibility(View.VISIBLE);
+            } else {
+                mCustomCarrierLabel.setVisibility(View.GONE);
+            }
+        }
+    }
+
     @Override
     protected void setAreThereNotifications() {
 
@@ -2688,7 +2719,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         removeRemoteInputEntriesKeptUntilCollapsed();
                     }
                 });
-            }
+	    }
         }
     }
 
@@ -4479,6 +4510,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateStackScrollerState(goingToFullShade, fromShadeLocked);
         updateNotifications();
         checkBarModes();
+        updateCarrier();
         updateMediaMetaData(false, mState != StatusBarState.KEYGUARD);
         mKeyguardMonitor.notifyKeyguardState(mStatusBarKeyguardViewManager.isShowing(),
                 mStatusBarKeyguardViewManager.isSecure(),

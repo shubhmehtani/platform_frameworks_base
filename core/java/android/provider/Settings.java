@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (C) 2006 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -3773,7 +3773,24 @@ public final class Settings {
          */
         public static final String NAVBAR_BUTTON_COLOR= "navbar_button_color";
 
-        /*
+        /**
+         * Status bar carrier label
+         * 0: Hide
+         * 1: Display on keyguard status bar
+         * 2: Display on Normal status bar
+         * 3: Enabled for both
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
+
+        /**
+         * custom carrier label. The value is
+         * String.
+         * @hide
+         */
+        public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5264,7 +5281,7 @@ public final class Settings {
          * @hide
          */
         public static final String PULSE_LAVALAMP_SOLID_SPEED = "lava_lamp_solid_speed";
- 
+
         /**
          * SmartBar buttons opacity on Pulse
          * @hide

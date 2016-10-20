@@ -16,6 +16,8 @@
 
 package com.android.internal.util.aos;
 
+import android.content.res.Resources;
+import java.util.Locale;
 import android.content.Context;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -23,6 +25,11 @@ import android.hardware.camera2.CameraManager;
 import android.net.ConnectivityManager;
 
 public class aosutils {
+
+    public static boolean isChineseLanguage() {
+       return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(
+               Locale.CHINESE.getLanguage());
+    }
 
     public static boolean deviceSupportsFlashLight(Context context) {
         CameraManager cameraManager = (CameraManager) context.getSystemService(
