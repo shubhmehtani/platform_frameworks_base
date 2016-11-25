@@ -33,5 +33,8 @@
 
     <!-- Whether doze feature is enabled by default in settings. -->
     <bool name="config_doze_enabled_by_default">false</bool>
+
+  <!-- Quick settings tiles columns and rows config -->
+  <java-symbol type="integer" name="config_qs_num_rows_landscape_default"/>
      
 </resources>
