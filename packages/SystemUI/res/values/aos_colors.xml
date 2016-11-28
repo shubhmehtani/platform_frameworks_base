@@ -19,4 +19,7 @@
     <!-- Custom Carrier Label -->
     <color name="status_bar_carrier_color">#FFFFFFFF</color>
 
+    <!-- QS title visibility -->
+    <dimen name="qs_tile_height_wo_label">48dp</dimen>
+
 </resources>
