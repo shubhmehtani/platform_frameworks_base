@@ -3919,6 +3919,12 @@ public final class Settings {
          */
         public static final String DOZE_SCREEN_BRIGHTNESS = "doze_screen_brightness";
 
+ 	/**
+         * Whether to display data activity arrows for wifi/data connections
+         * @hide
+         */
+        public static final String DATA_ACTIVITY_ARROWS = "data_activity_arrows";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

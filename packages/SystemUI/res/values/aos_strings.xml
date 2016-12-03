@@ -33,4 +33,7 @@
     <string name="lockscreen_choose_action_title">Choose action</string>
     <string name="lockscreen_none_target">None</string>
 
+    <!-- Data/Wifi activity arrows -->
+    <string name="data_wifi_activity_arrows_title">Network activity</string>
+
 </resources>

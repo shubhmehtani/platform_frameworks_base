@@ -378,6 +378,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     // show lte/4g switch
     private boolean mShowLteFourGee;
+	
+	// data/wifi activity arrows
+    private boolean mDataWifiActivityArrows;
 
     // top bar
     BaseStatusBarHeader mHeader;
@@ -510,6 +513,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                      Settings.System.STATUS_BAR_SHOW_CARRIER),
                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                     Settings.System.DATA_ACTIVITY_ARROWS),
+                   false, this, UserHandle.USER_ALL);
             updateSettings();
 
         }
@@ -524,6 +530,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             Settings.System.SHOW_LTE_FOURGEE,
                             0, UserHandle.USER_CURRENT) == 1;
                     mNetworkController.onConfigurationChanged();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.DATA_ACTIVITY_ARROWS))) {
+                    mDataWifiActivityArrows = Settings.System.getIntForUser(
+                        mContext.getContentResolver(),
+                        Settings.System.DATA_ACTIVITY_ARROWS,
+                        0, UserHandle.USER_CURRENT) == 1;
             } else if (uri.equals(Settings.System.getUriFor(
                       Settings.System.NAV_BAR_DYNAMIC))) {
                       mNavigationController.updateNavbarOverlay(mContext.getResources());
@@ -551,6 +563,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             boolean mShowLteFourGee = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_LTE_FOURGEE, 0, UserHandle.USER_CURRENT) == 1;
 
+            boolean mDataWifiActivityArrows = Settings.System.getIntForUser(resolver,
+                    Settings.System.DATA_ACTIVITY_ARROWS, 0, UserHandle.USER_CURRENT) == 1;
             mShowCarrierLabel = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
 
