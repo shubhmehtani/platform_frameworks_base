@@ -2853,4 +2853,7 @@
 
   <!-- Bool to fix legacy sensors -->
   <java-symbol type="bool" name="config_useSystemClockforRotationSensor" /> 
+
+  <java-symbol type="integer" name="config_sms_authorization_timeout_ms" />
+  <java-symbol type="bool" name="config_sms_authorization_enabled" />
 </resources>
