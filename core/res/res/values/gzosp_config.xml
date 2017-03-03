@@ -28,4 +28,11 @@
 
     <!-- Whether to persist the notification for when a usb drive device is plugged in -->
     <bool name="config_persistUsbDriveNotification">false</bool>
+
+    <!-- Whether Keypress Boost is enabled -->
+    <bool name="config_enableKeypressBoost">false</bool>
+
+    <!-- Boost parameters which get passed to QPerformance -->
+    <integer-array name="keypressboost_strong_param_value"/>
+    <integer-array name="keypressboost_weak_param_value"/>
 </resources>
