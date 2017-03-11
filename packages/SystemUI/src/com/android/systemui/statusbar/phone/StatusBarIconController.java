@@ -50,6 +50,7 @@ import com.android.systemui.statusbar.NotificationData;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.StatusBarIconView;
 import com.android.systemui.statusbar.policy.Clock;
+import com.android.systemui.statusbar.phone.TickerView;
 import com.android.systemui.tuner.TunerService;
 import com.android.systemui.tuner.TunerService.Tunable;
 
@@ -92,6 +93,7 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
     private int mClockLocation;
     private LinearLayout mCenterClockLayout;
     private TextView mCarrierLabel;
+    private TickerView mNotificationTicker;
 
     private int mIconSize;
     private int mIconHPadding;
@@ -154,6 +156,8 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
         mCenterClockLayout = (LinearLayout)statusBar.findViewById(R.id.center_clock_layout);
         mCenterClock = (Clock) statusBar.findViewById(R.id.center_clock);
         mLeftClock = (Clock) statusBar.findViewById(R.id.left_clock);
+        mNotificationTicker = (TickerView) statusBar.findViewById(R.id.tickerText);
+
         mDarkModeIconColorSingleTone = context.getColor(R.color.dark_mode_icon_color_single_tone);
         mLightModeIconColorSingleTone = context.getColor(R.color.light_mode_icon_color_single_tone);
         mHandler = new Handler();
@@ -585,6 +589,7 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
         mCenterClock.setTextColor(getTint(mTintArea, mCenterClock, mIconTint));
         mLeftClock.setTextColor(getTint(mTintArea, mLeftClock, mIconTint));
         mCarrierLabel.setTextColor(getTint(mTintArea, mCarrierLabel, mIconTint));
+        if (mNotificationTicker != null) mNotificationTicker.setDarkIntensity(mDarkIntensity);
     }
 
     public void appTransitionPending() {
