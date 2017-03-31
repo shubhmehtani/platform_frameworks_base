@@ -5241,6 +5241,12 @@ public final class Settings {
         public static final String PULSE_LAVALAMP_SOLID_SPEED = "lava_lamp_solid_speed";
  
         /**
+         * SmartBar buttons opacity on Pulse
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_BUTTONS_OPACITY = "pulse_custom_buttons_opacity";
+
+        /**
          * A flag containing settings used for biometric weak
          * @hide
          */
