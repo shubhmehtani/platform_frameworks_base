@@ -136,10 +136,7 @@ final class SingleHandWindow {
     public void show() {
         if (!mWindowVisible) {
             if (!mIsBlurTopWindow) {
-                int currentRotation = mDefaultDisplay.getRotation();
-
-                mService.freezeOrThawRotation(currentRotation == Surface.ROTATION_180 ?
-                        Surface.ROTATION_180 : Surface.ROTATION_0);
+                mService.freezeOrThawRotation(Surface.ROTATION_0);
                 mService.setSingleHandMode(mLeft ? 1 : 2);
                 mService.requestTraversal();
             }
