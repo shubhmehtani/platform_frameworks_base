@@ -4570,6 +4570,9 @@ message MetricsEvent {
     // Quick setting tiles
     CUSTOM_QUICK_TILES = 1144;
 
+    // Atomic-OS Laboratory
+    LABORATORY = 1145;
+
     // ---- End O-MR1 Constants, all O-MR1 constants go above this line ----
 
     // Add new aosp constants above this line.
