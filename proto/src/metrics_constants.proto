@@ -2252,5 +2252,9 @@ message MetricsEvent {
 
     // Location detail adapter
     QS_LOCATION_DETAIL = 504;
+
+    // Atomic-OS Laboratory
+    LABORATORY = 998;
+
   }
 }
