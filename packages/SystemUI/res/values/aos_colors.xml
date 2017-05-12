@@ -39,4 +39,8 @@
     <!-- QS edit page background color -->
     <color name="qs_edit_item_decoration_bg">@*android:color/secondary_device_default_settings_light</color>
 
+    <!-- Recents Memory bar -->
+    <color name="recents_memory_progress_overall">@*android:color/resize_shadow_start_color</color>
+    <color name="recents_memory_progress_free">@*android:color/accent_device_default_light</color>
+
 </resources>
