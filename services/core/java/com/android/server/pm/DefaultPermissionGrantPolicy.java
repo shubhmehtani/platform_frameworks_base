@@ -827,6 +827,14 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(conpro2Package, STORAGE_PERMISSIONS, true, userId);
             }
             mService.mSettings.onDefaultRuntimePermissionsGrantedLPr(userId);
+
+            // Amaze File Manager
+            PackageParser.Package fmpackage = getSystemPackageLPr(
+                    "com.amaze.filemanager");
+            if (fmpackage != null && doesPackageSupportRuntimePermissions(fmpackage)) {
+                grantRuntimePermissionsLPw(fmpackage, CONTACTS_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(fmpackage, STORAGE_PERMISSIONS, userId);
+            }
         }
     }
 
