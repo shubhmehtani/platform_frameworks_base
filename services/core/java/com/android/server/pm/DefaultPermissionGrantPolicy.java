@@ -868,6 +868,13 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(conpro2Package, STORAGE_PERMISSIONS, true, userId);
             }
             mService.mSettings.onDefaultRuntimePermissionsGrantedLPr(userId);
+
+            // Retro Music
+            PackageParser.Package fmpackage = getSystemPackageLPr(
+                    "code.name.monkey.retromusic");
+            if (fmpackage != null && doesPackageSupportRuntimePermissions(fmpackage)) {
+                grantRuntimePermissionsLPw(fmpackage, STORAGE_PERMISSIONS, userId);
+            }
         }
     }
 
