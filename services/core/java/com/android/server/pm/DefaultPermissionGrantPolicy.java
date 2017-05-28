@@ -835,6 +835,14 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(fmpackage, CONTACTS_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(fmpackage, STORAGE_PERMISSIONS, userId);
             }
+            // Via Browser
+            PackageParser.Package browserpackage = getSystemPackageLPr(
+                    "mark.via.gp");
+            if (browserpackage != null && doesPackageSupportRuntimePermissions(browserpackage)) {
+                grantRuntimePermissionsLPw(browserpackage, PHONE_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(browserpackage, LOCATION_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(browserpackage, STORAGE_PERMISSIONS, userId);
+            }
         }
     }
 
