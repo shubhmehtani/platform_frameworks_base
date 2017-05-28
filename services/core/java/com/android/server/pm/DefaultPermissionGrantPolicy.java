@@ -875,6 +875,14 @@ final class DefaultPermissionGrantPolicy {
             if (fmpackage != null && doesPackageSupportRuntimePermissions(fmpackage)) {
                 grantRuntimePermissionsLPw(fmpackage, STORAGE_PERMISSIONS, userId);
             }
+            // Etar - Calendar
+            PackageParser.Package calendarpackage = getSystemPackageLPr(
+                    "ws.xsoh.etar");
+            if (calendarpackage != null && doesPackageSupportRuntimePermissions(calendarpackage)) {
+                grantRuntimePermissionsLPw(calendarpackage, CALENDAR_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(calendarpackage, CONTACTS_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(calendarpackage, STORAGE_PERMISSIONS, userId);
+            }
         }
     }
 
