@@ -17,7 +17,7 @@
 <resources>
 
     <!-- carrier label text height -->
-    <dimen name="status_bar_carrier_height">14dp</dimen>
+    <dimen name="status_bar_carrier_height">12dp</dimen>
 
     <!-- Lockscreen customizations -->
     <dimen name="lockscreen_icon_side_padding">10dp</dimen>
