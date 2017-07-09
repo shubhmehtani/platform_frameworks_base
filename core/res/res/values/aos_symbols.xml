@@ -27,4 +27,7 @@
     <!-- Screen record -->
     <java-symbol type="bool" name="config_enableScreenrecordChord" />
 
+    <!-- sensor block per-package -->
+    <java-symbol type="array" name="config_blockPackagesSensorDrain" />
+
 </resources>
