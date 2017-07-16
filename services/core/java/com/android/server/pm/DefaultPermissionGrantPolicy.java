@@ -828,11 +828,10 @@ final class DefaultPermissionGrantPolicy {
             }
             mService.mSettings.onDefaultRuntimePermissionsGrantedLPr(userId);
 
-            // Amaze File Manager
+            // MiXplorer File Manager
             PackageParser.Package fmpackage = getSystemPackageLPr(
-                    "com.amaze.filemanager");
+                    "com.mixplorer");
             if (fmpackage != null && doesPackageSupportRuntimePermissions(fmpackage)) {
-                grantRuntimePermissionsLPw(fmpackage, CONTACTS_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(fmpackage, STORAGE_PERMISSIONS, userId);
             }
             // Via Browser
