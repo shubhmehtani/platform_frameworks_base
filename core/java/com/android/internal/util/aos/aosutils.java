@@ -27,6 +27,7 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.net.ConnectivityManager;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.DisplayInfo;
 import android.view.WindowManager;
@@ -137,4 +138,12 @@ public class aosutils {
         return getScreenType(context) == DEVICE_TABLET;
     }
 
+    /**
+    * Returns whether the device is voice-capable (meaning, it is also a phone).
+    */
+    public static boolean isVoiceCapable(Context context) {
+      TelephonyManager telephony =
+            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        return telephony != null && telephony.isVoiceCapable();
+    }
 }
