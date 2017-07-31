@@ -2853,4 +2853,6 @@
   <!-- Emergency button in power menu -->
   <java-symbol type="bool" name="config_showEmergencyButtonInPowerMenu" />
 
+  <!-- Bool to fix legacy sensors -->
+  <java-symbol type="bool" name="config_useSystemClockforRotationSensor" /> 
 </resources>
