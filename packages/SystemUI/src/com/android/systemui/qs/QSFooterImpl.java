@@ -35,6 +35,7 @@ import android.support.annotation.VisibleForTesting;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -68,7 +69,7 @@ import com.android.systemui.statusbar.policy.UserInfoController.OnUserInfoChange
 //import com.android.systemui.tuner.TunerService;
 
 public class QSFooterImpl extends FrameLayout implements QSFooter,
-        NextAlarmChangeCallback, OnClickListener, OnUserInfoChangedListener, EmergencyListener,
+        NextAlarmChangeCallback, OnClickListener, OnLongClickListener, OnUserInfoChangedListener, EmergencyListener,
         SignalCallback {
     private static final float EXPAND_INDICATOR_THRESHOLD = .93f;
 
@@ -126,6 +127,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mSettingsButton = findViewById(R.id.settings_button);
         mSettingsContainer = findViewById(R.id.settings_button_container);
         mSettingsButton.setOnClickListener(this);
+        mSettingsButton.setOnLongClickListener(this);
 
         mAlarmStatusCollapsed = findViewById(R.id.alarm_status_collapsed);
         mAlarmStatus = findViewById(R.id.alarm_status);
@@ -384,6 +386,21 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
                         AlarmClock.ACTION_SHOW_ALARMS), 0);
             }
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (v == mSettingsButton) {
+            startAtomicActivity();
+        }
+        return false;
+    }
+
+    private void startAtomicActivity() {
+        Intent eIntent = new Intent(Intent.ACTION_MAIN);
+        eIntent.setClassName("com.android.settings",
+            "com.android.settings.Settings$AtomicSettingsActivity");
+        mActivityStarter.startActivity(eIntent, true /* dismissShade */);
     }
 
     private void startSettingsActivity() {
