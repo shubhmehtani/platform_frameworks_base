@@ -49,4 +49,7 @@
     <string name="screenrecord_notif_error">Unable to record screen</string>
     <string name="notification_channel_screenrecord">Screenrecords</string>
 
+    <!-- PiP Tile -->
+    <string name="quick_settings_pip_label">PiP</string>
+
 </resources>
