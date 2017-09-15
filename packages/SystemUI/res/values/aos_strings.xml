@@ -101,4 +101,7 @@
     <string name="accessibility_quick_settings_hwkeys_off">HW keys off</string>
     <string name="quick_settings_hwkeys_label">HW keys</string>
 
+    <!-- Recents -->
+    <string name="recents_app_killed">App killed</string>
+
 </resources>
