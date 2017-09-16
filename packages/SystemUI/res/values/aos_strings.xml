@@ -89,4 +89,7 @@
     <string name="custom_hint">Swipe from icon to launch</string>
     <string name="systemui_tuner_navbar_title">Stock settings</string>
 
+    <!-- volte icon switch -->
+    <string name="status_bar_volte">VOLTE</string>
+
 </resources>
