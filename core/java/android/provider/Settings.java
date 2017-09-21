@@ -4052,11 +4052,17 @@ public final class Settings {
          */
         public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
 
-        /**
+       /**
          * Network traffic inactivity threshold (default is 1 kBs)
          * @hide
          */
         public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
+
+       /**
+         * Whether to vibrate on power connection or disconnection
+         * @hide
+         */
+        public static final String VIBRATION_ON_CHARGE_STATE_CHANGED = "vibration_on_charge_state_changed";
 
         /**
          * Whether to show Brightness Icon On Brightness Slider
