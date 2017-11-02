@@ -112,4 +112,9 @@
     <string name="show_lte_fourgee_summary">Display either the 4G or LTE network icon in the statusbar/QS panel</string>
     <string name="statusbar_tuner_category_title">Hide items from statusbar</string>
 
+    <!-- Recents Panel -->
+    <!-- The text for the button in the notification window-shade that clears
+         all of the currently visible notifications. [CHAR LIMIT=10]-->
+    <string name="clear_recents">Close all recent</string>
+
 </resources>
