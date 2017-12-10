@@ -72,4 +72,7 @@
      <string name="accessibility_quick_settings_volume_panel">Volume</string>
      <string name="quick_settings_volume_panel_label">Volume</string>
 
+    <!-- SystemUI Tuner Parts -->
+    <string name="systemui_tuner_icon_manager_title">Icon manager</string>
+
 </resources>
