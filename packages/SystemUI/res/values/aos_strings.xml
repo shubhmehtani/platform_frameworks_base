@@ -92,6 +92,7 @@
     <string name="lockscreen_hidden">None</string>
     <string name="custom_hint">Swipe from icon to launch</string>
     <string name="systemui_tuner_navbar_title">Stock settings</string>
+    <string name="status_bar_vpn">VPN</string>
 
     <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">HW keys on</string>
