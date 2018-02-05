@@ -4424,6 +4424,13 @@ public final class Settings {
         public static final String QS_FOOTER_WARNINGS = "qs_footer_warnings";
 
         /**
+         * Current theme overlay
+         * @hide
+         */
+        public static final String SYSTEM_THEME_CURRENT_OVERLAY = "system_theme_current_overlay";
+
+
+        /**
          * 0 - fullscreen
          * 1 - partial
          * @hide
