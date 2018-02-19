@@ -2059,25 +2059,12 @@ public final class PowerManagerService extends SystemService
                     if (now < nextTimeout) {
                         if (mButtonTimeoutEnabled && (userActivityValue || settingsValue)){
                             final boolean buttonPressed = mEvent == PowerManager.USER_ACTIVITY_EVENT_BUTTON;
-                            if (mButtonBacklightOnTouchOnly) {
+                            if (mButtonBacklightOnTouchOnly && !isDeviceInPocket) {
                                 if (buttonPressed) {
                                     triggerButtonTimeoutEvent(now);
                                 }
                             } else {
-                                if ((!mButtonBacklightOnTouchOnly || mButtonPressed) &&
-                                        !mProximityPositive && !isDeviceInPocket) {
-                                    mButtonsLight.setBrightness(buttonBrightness);
-                                    mButtonPressed = false;
-                                    if (buttonBrightness != 0 && mButtonTimeout != 0) {
-                                        mButtonOn = true;
-                                        if (now + mButtonTimeout < nextTimeout) {
-                                            nextTimeout = now + mButtonTimeout;
-                                        }
-                                    }
-                                } else if (mButtonBacklightOnTouchOnly && mButtonOn &&
-                                        mLastButtonActivityTime + mButtonTimeout < nextTimeout) {
-                                    nextTimeout = mLastButtonActivityTime + mButtonTimeout;
-                                }
+                                triggerButtonTimeoutEvent(now);
                             }
                         }
                         mUserActivitySummary = USER_ACTIVITY_SCREEN_BRIGHT;
